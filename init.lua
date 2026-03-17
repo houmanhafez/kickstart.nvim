@@ -140,7 +140,6 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
 --  and `:help 'listchars'`
 --
 --  Notice listchars is set using `vim.opt` instead of `vim.o`.
@@ -972,7 +971,17 @@ local groups = {
   'LineNr',
   'EndOfBuffer',
 }
+vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit all' })
+vim.keymap.set('n', '<leader>tt', '<cmd>10split | terminal<CR>', { desc = 'Open terminal' })
 
+vim.keymap.set('n', '<C-Up>', '<cmd>resize +2<CR>', { desc = 'Increase split height' })
+vim.keymap.set('n', '<C-Down>', '<cmd>resize -2<CR>', { desc = 'Decrease split height' })
+vim.keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<CR>', { desc = 'Decrease split width' })
+vim.keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<CR>', { desc = 'Increase split width' })
+
+vim.api.nvim_set_hl(0, 'NeoTreeNormal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NeoTreeNormalNC', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NeoTreeEndOfBuffer', { bg = 'none' })
 for _, group in ipairs(groups) do
   vim.api.nvim_set_hl(0, group, { bg = 'none' })
 end
