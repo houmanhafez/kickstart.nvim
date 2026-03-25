@@ -149,6 +149,7 @@ rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- NOTE: Plugins can be added via a link or github org/name. To run setup automatically, use `opts = {}`
+  { import = 'plugins' },
   { 'NMAC427/guess-indent.nvim', opts = {} },
   {
     'okuuva/auto-save.nvim',
@@ -160,6 +161,19 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    'alex-popov-tech/store.nvim',
+    dependencies = {
+      'OXY2DEV/markview.nvim', -- optional, for pretty readme preview / help window
+    },
+    cmd = 'Store',
+    keys = {
+      { '<leader>s', '<cmd>Store<cr>', desc = 'Open Plugin Store' },
+    },
+    opts = {
+      -- optional configuration here
+    },
   },
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
@@ -862,3 +876,6 @@ for _, group in ipairs(groups) do
 end
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+--
+-- local plugin_dir = vim.fn.stdpath("config") .. "/lua/plugins"
