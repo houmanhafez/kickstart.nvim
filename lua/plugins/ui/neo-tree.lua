@@ -20,7 +20,10 @@ return {
   ---@type neotree.Config
   opts = {
     window = {
-      width = 30,
+      width = 40,
+      mappings = {
+        [','] = 'collapse_all_nodes',
+      },
     },
     filesystem = {
       filtered_items = {
