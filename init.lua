@@ -57,6 +57,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('n', '<leader>qq', '<cmd>qa<CR>', { desc = 'Quit all' })
 vim.keymap.set('n', '<leader>tt', '<cmd>10split | terminal<CR>', { desc = 'Open terminal' })
 
+vim.keymap.set('i', '<C-f>', '<Esc>la', { desc = 'Move out of pair' })
 -- [[ Diagnostics ]]
 vim.diagnostic.config {
   update_in_insert = false,
