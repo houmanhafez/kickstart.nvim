@@ -45,12 +45,6 @@ return {
   -- auto-detect indentation
   { 'NMAC427/guess-indent.nvim', opts = {} },
 
-  -- auto-save
-  {
-    'okuuva/auto-save.nvim',
-    opts = { enabled = true },
-  },
-
   -- conform: autoformat
   {
     'stevearc/conform.nvim',
