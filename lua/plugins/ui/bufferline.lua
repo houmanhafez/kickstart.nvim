@@ -21,9 +21,18 @@ return {
       buffer = {
         fg = '#6c7086',
       },
+      tab_selected = { fg = '#333333', bg = '#EB8A8F' },
+      tab = { fg = '#6c7086' },
+      duplicate_selected = { fg = '#333333', bg = '#EB8A8F' },
+      modified_selected = { fg = '#333333', bg = '#EB8A8F' },
+      separator_selected = { fg = '#EB8A8F', bg = '#EB8A8F' },
+      separator_visible = { fg = '#6c7086' },
+      separator = { fg = '#6c7086' },
+
+      indicator_selected = { fg = '#EB8A8F', bg = '#EB8A8F' },
     },
     options = {
-      diagnostics = 'nvim_lsp',
+      diagnostics_update_in_insert = false,
       diagnostics_indicator = function(_, _, diag)
         local icons = { error = ' ', warning = ' ', hint = ' ', info = ' ' }
         local ret = (diag.error and icons.error .. diag.error .. ' ' or '') .. (diag.warning and icons.warning .. diag.warning or '')

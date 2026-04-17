@@ -96,6 +96,12 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
+-- [[ neotree stupid ]]
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'neo-tree',
+  callback = function() vim.cmd 'wincmd L' end,
+})
+
 -- [[ lazy.nvim bootstrap ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
