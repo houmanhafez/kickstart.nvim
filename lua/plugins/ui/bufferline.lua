@@ -3,9 +3,18 @@ return {
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   event = 'VeryLazy',
   keys = {
+    {
+      '<leader>x',
+      function()
+        if vim.bo.filetype == 'neo-tree' then return end
+        local bufs = vim.fn.getbufinfo { buflisted = 1 }
+        if #bufs > 1 then vim.cmd 'BufferLineCyclePrev' end
+        vim.cmd 'bdelete #'
+      end,
+      desc = 'Close buffer',
+    },
     { '<Tab>', '<cmd>BufferLineCycleNext<CR>', desc = 'Next buffer' },
     { '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', desc = 'Prev buffer' },
-    { '<leader>x', '<cmd>bdelete<CR>', desc = 'Close buffer' },
   },
   opts = {
     highlights = {
