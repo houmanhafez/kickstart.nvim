@@ -25,9 +25,7 @@ return {
     pcall(require('telescope').load_extension, 'ui-select')
 
     local builtin = require 'telescope.builtin'
-    local map = function(keys, func, desc, mode)
-      vim.keymap.set(mode or 'n', keys, func, { desc = desc })
-    end
+    local map = function(keys, func, desc, mode) vim.keymap.set(mode or 'n', keys, func, { desc = desc }) end
 
     map('<leader>sh', builtin.help_tags, '[S]earch [H]elp')
     map('<leader>sk', builtin.keymaps, '[S]earch [K]eymaps')
@@ -42,22 +40,20 @@ return {
     map('<leader>sn', function() builtin.find_files { cwd = vim.fn.stdpath 'config' } end, '[S]earch [N]eovim files')
     map('<leader><leader>', builtin.buffers, '[ ] Find existing buffers')
 
-    map('<leader>/', function()
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false })
-    end, '[/] Fuzzily search in current buffer')
+    map(
+      '<leader>/',
+      function() builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false }) end,
+      '[/] Fuzzily search in current buffer'
+    )
 
-    map('<leader>s/', function()
-      builtin.live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }
-    end, '[S]earch [/] in Open Files')
+    map('<leader>s/', function() builtin.live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' } end, '[S]earch [/] in Open Files')
 
     -- LSP-aware pickers — registered on attach so they're buffer-local
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('telescope-lsp-attach', { clear = true }),
       callback = function(event)
         local buf = event.buf
-        local bmap = function(keys, func, desc)
-          vim.keymap.set('n', keys, func, { buffer = buf, desc = desc })
-        end
+        local bmap = function(keys, func, desc) vim.keymap.set('n', keys, func, { buffer = buf, desc = desc }) end
         bmap('grr', builtin.lsp_references, '[G]oto [R]eferences')
         bmap('gri', builtin.lsp_implementations, '[G]oto [I]mplementation')
         bmap('grd', builtin.lsp_definitions, '[G]oto [D]efinition')
